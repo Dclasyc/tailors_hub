@@ -2,6 +2,10 @@
  * Cascading Styling Sheet**/
 
  /**Navigation panel Div**/
+
+ body{
+  background-color: #f4f5f6;
+ }
   
 #parentdiv{
 
@@ -11,7 +15,7 @@
 
   .navbar{
     background-color: #000;
-    box-shadow: 0px 0px 3px 2px
+    box-shadow: 0px 0px 0px 0px;
   }
 
   ul{
@@ -24,7 +28,7 @@
   }
 
   .navtext:hover{
-    color: #ff950a !important;
+    color: #ff8f1f !important;
   }
 
 
@@ -34,24 +38,47 @@
     color: white;
   }
 
+  .mybuttons{
+    background-color:#000;
+    border: 1px solid #ff8f1f;
+    color: #fff;
+    
+  }
+
+  .mybuttons:hover{
+    background-color: #ff8f1f; /*orange*/
+    border: 1px solid #fff;
+    color: #fff;
+
+  }
+
+  #btnorder{
+    background-color:#ff8f1f;
+    color: #fff;
+    
+  }
+
   #btnsell{
-    background-color:#ff950a;
+    background-color:#000;
+    border: 1px solid #ff8f1f;
     margin-right: 40px;
     width: 200px;
-    box-shadow: 0px 0px 2px 2px;
+    box-shadow: 0px 0px 0px 0px;
+    color: #fff;
     
   }
 
   #btnsell:hover{
-    background-color: #f4f5f6;
+    background-color: #ff8f1f; /*orange*/
+    border: 1px solid #fff;
     width: 205px;
-    color: #ff950a;
-
+    color: #fff;
   }
+
 
   #adsdiv{
     border: 0px solid #000;
-    height: 300px;
+    height: 400px;
     margin-top: 10px;
     
       }
@@ -76,21 +103,29 @@
     #sidepanel{
       margin-left: 0px;
       width: 100%;
+      border: 0px solid #000;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center !important;
     }
 
     .sidepanellist{
       margin:5px;
-      justify-self: center;
+      justify-self:;
 
     }
 
     #sidepanel_and_landingpics_div{
       flex-wrap: wrap !important;
+      border: 0px solid #000;
+      
     }
 
     #indexpicsdiv{
       display: flex;
-      justify-content: center;
+      justify-content: center !important;
+      border: 0px solid #000 !important;
+
     }
 
     .landingpagepics{
@@ -103,8 +138,10 @@
 
     #adsdiv{
       border: 0px solid #000;
-      height: 0px;
+      height: 200px;
       margin-top: 0px;
+      background-image: url(images/caraimg7.jpg);
+      background-position:top;
     }
 
     #carouselExampleControls{
@@ -123,20 +160,21 @@
   
 
   .sidepanellist {
-    border: 0px solid #000;
+    border: 1px solid #fff;
     border-radius: 5px;
     height: 70px;
     width: 350px;
     margin-top: 10px;
-    box-shadow: 0px 0px 2px 2px;
+    box-shadow: 0px 0px 0px 0px;
     display: flex;
     text-align: center;
     align-items: center;
-    background-color: rgba(0,0,0,0.4);
+    background-image: linear-gradient(to right, rgba(0,0,0,0.2), rgba(255,143,31,0.5));
   }
 
   .sidepanellist:hover{
-    background-color: rgba(255,149,10,0.3);
+    background-color: rgba(255, 143, 31,1);
+    border: 0px solid #fff
   }
 
   h4{
@@ -160,33 +198,84 @@
   }
 
   .landingpagepics{
-    height: 250px;
-    width: 250px;
-    border: 0px solid #000;
-    box-shadow: 0px 0px 2px 2px;
+    height: 330px;
+    width: 230px;
+    border: 1px solid #a2a2a2;
+   /* box-shadow: 0px 0px 2px 2px;*/
     margin-bottom: 30px;
   }
 
 
   .card-img-top{
-    width: 250px !important;
-    height: 170px !important;
+    width: 230px !important;
+    height: 230px !important;
     position: !important;
   }
+
+  div .card-body h5{
+   color: #0cce6b
+  }
+
+
+  /*Product Information Page*/
+
+.productinfoimg{
+    height: 650px;
+    border: 1px solid #a2a2a2;
+   /* box-shadow: 0px 0px 2px 2px;*/
+    margin-bottom: 30px;
+  }
+
+
+  .card-imginfo-top{
+    width: inherit!important;
+    height: inherit !important;
+    box-shadow: 0px 0px 3px 1px #a2a2a2;
+
+  }
+
+  #card-title-div{
+    border-top: 1px solid #a4a5a6;
+  }
+
+  #carddescriptiondiv{
+    border-top: 1px solid #a4a5a6;
+  }
+
+  #cardbuttondiv{
+    border-top: 1px solid #a4a5a6;
+  }
+
+
+  .sideprodinfodiv{
+    
+    box-shadow: 0px 0px 3px 1px #a4a5a6;
+    text-align: center;
+  }
+
+  #btnfeedback{
+    background-color: #ff8f1f; /*orange*/
+    border: 1px solid #fff;
+    color: #fff;
+  }
+
+
+/* End Product Information Page*/
+
 
   /*Footer Section*/
 
   #footerdiv{
 
-    min-height:200px;
+    height:100px;
     border:0px solid #000;
     background-color:#000;
   }
 
-  #overlay{
+ /* #overlay{
   border:0px solid black;
   width:100%;
   min-height:200px;
   background-color:rgba(0,0,0,0.2);
-  padding-top: 100px;
+  padding-top: 100px;*/
 

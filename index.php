@@ -1,3 +1,11 @@
+
+<?php 
+	
+	ob_start();
+	session_start();
+
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,12 +32,11 @@
 			<!-- Navigation panel -->
 			
 
-<div >
-<nav class="navbar navbar-expand-lg navbar-light" id="navdiv">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light" id="navdiv">
   <div class="container-fluid">
 
-    <a class="navbar-brand" href="index.php">
-		  <img src="images/navlogo.jpg" alt="logo" height="50">
+    <a class="" href="index.php">
+		  <img src="images/navlogoedit.png" alt="logo" height="80" style="border-radius: 50%;">
 	 </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #ff950a;">
@@ -40,13 +47,19 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navigation_item">
          
 		        <li class="nav-item">
-		          <a class="nav-link navtext" href="signin.php">Log In</a>
+		          <a class="nav-link navtext" href="login.php">Log In</a>
 		        </li>
 
 		        <li class="nav-link navtext" id="login_signup_divider">|</li>
 
 		        <li class="nav-item">
-		          <a class="nav-link navtext" href="signup.php">Sign Up</a>
+		          <a class="nav-link navtext" href="customersignup.php">Customer Sign Up</a>
+		        </li>
+
+		        <li class="nav-link navtext" id="login_signup_divider">|</li>
+
+		        <li class="nav-item">
+		          <a class="nav-link navtext" href="tailorsignup.php">Tailor Sign Up</a>
 		        </li>
       </ul>
       
@@ -55,7 +68,6 @@
     </div>
   </div>
 </nav>
-</div>
 
 
 		<!-- BODY OF WEBPAGE -->
@@ -72,14 +84,20 @@
 
 				<div id="carouselExampleControls" class="carousel slide hidden-lg" data-bs-ride="carousel">
 			  <div class="carousel-inner">
+			  	<div class="carousel-item">
+			      <img src="images/cara7.jpg" class="d-block w-100" alt="carouse1 image" style="height:400px">
+			    </div>
+			    <div class="carousel-item">
+			      <img src="images/cara3.jpg" class="d-block w-100" alt="carouse2 image" style="height:400px">
+			    </div>
 			    <div class="carousel-item active">
-			      <img src="images/ads3.jpg" class="d-block w-100" alt="carousel image" style="height:300px">
+			      <img src="images/cara51.jpg" class="d-block w-100" alt="carouse2 image" style="height:400px">
 			    </div>
 			    <div class="carousel-item">
-			      <img src="images/ads2.jpg" class="d-block w-100" alt="carousel image" style="height:300px">
+			      <img src="images/cara62.jpg" class="d-block w-100" alt="carouse3 image" style="height:400px">
 			    </div>
 			    <div class="carousel-item">
-			      <img src="images/ads1.jpg" class="d-block w-100" alt="carousel image" style="height:300px">
+			      <img src="images/cara41.jpg" class="d-block w-100" alt="carousel4 image" style="height:400px">
 			    </div>
 			  </div>
 			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -102,109 +120,93 @@
 		
 		<div class="col-lg-4" id="sidepanel">
 
-			<div class="row sidepanellist" class="sidepanellist" id="menscasual">
-				<h4>Men's Casual</h4>
+			<!-- Populate Categories here -->
+
+						<?php
+                  include_once "connection/products.php";
+                  $categoryobj = new Products();
+                  $categories = $categoryobj->getCategories();
+
+                  foreach ($categories as $key => $value) {
+                    $categoryid = $value['category_id'];
+                    $categoryname = $value['category_name'];
+                 
+            ?>
+
+			<div class='row sidepanellist' class='sidepanellist' id='menscasual' style='display:flex; justify-content: space-between;'>
+				<h4>
+					<?php 
+							echo $categoryname
+					 ?>
+				</h4>
 			</div>
 
+			<?php 
 
-			<div class="row sidepanellist" id="womenscasual">
-				<h4>Women's Casual</h4>
-			</div>
+					 }
 
-
-			<div class="row sidepanellist" id="mensnative">
-				<h4>Men's Native</h4>
-			</div>
-
-
-			<div class="row sidepanellist" id="womensnative">
-				<h4>Women's Native</h4>
-			</div>
-
-
-			<div class="row sidepanellist" id="mensformal">
-				<h4>Men's Corporate</h4>
-			</div>
-
-			<div class="row sidepanellist" id="womensformal">
-				<h4>Women's Corporate</h4>
-			</div>
-
-			<div class="row sidepanellist" id="menswedding">
-				<h4>Men's Bridal</h4>
-			</div>
-
-
-			<div class="row sidepanellist" id="womenswedding">
-				<h4>Women's Bridal</h4>
-			</div>
+			 ?>
 
 
 		</div>
 
 
 		<div class="col-lg-8" id=indexpicsdiv>
-			
-				<div class="card landingpagepics">
 
-						<img class="card-img-top" src="images/mens/menscasual.jpg" alt="Card image">
+				<?php
+                  include_once "connection/products.php";
+                  $prodobj = new Products();
+                  $productlist = $prodobj->listProducts();
+
+                  if(count($productlist)> 0){
+                  foreach ($productlist as $key => $value) {
+                  	$productid = $value['product_id'];
+                    $productimage = $value['productimage_url'];
+                    $productprice = $value['product_price'];
+                    $productname = $value['product_name'];
+                    $productdesc = $value['product_desc'];
+                         
+            ?>
+      <form method="post" action="productinformation.php">
+				<div class="card landingpagepics">
+				<img  class="card-img-top" src= "<?php echo 'designs/'.$productimage?>" alt="Card image">
+					  
 					  <div class="card-body">
-					    <h5 class="card-title">N-Price</h5>
-					    <p class="card-text">Details of item</p>
+					    <h5 class="card-title"><?php echo $productname ?></h5>
+					    <p class="card-text">&#8358 <?php echo number_format($productprice,2) ?>
+					    	
+					    	
+                  <input type="hidden" name="price" value="<?php echo $value['product_price']; ?>">
+                  <input type="hidden" name="productid" value="<?php echo $value['product_id']; ?>">
+                  <input type="hidden" name="productname" value="<?php echo $value['product_name']; ?>">
+                  <input type="hidden" name="productpicture" value="<?php echo $value['productimage_url']; ?>">
+                  <input type="hidden" name="productdescription" value="<?php echo $value['product_desc']; ?>">
+
+          			<button class="btn mybuttons ms-4" id="btnorder">Order</button>
+					    </p>
+
 					  </div>
+				</div>
+</form>
 						
-				</div>
+										
 
-				<div class="card landingpagepics">
-					
-				</div>
+				<?php 
 
-				<div class="card landingpagepics">
-					
-				</div>
+						}
+					}
 
-				<div class="card landingpagepics">
-					
-				</div>
+				 ?>
 
-				<div class="card landingpagepics">
-					
-				</div>
+				
 
-				<div class="card landingpagepics">
-					
-				</div>
 
-				<div class="card landingpagepics">
-					
-				</div>
 
-				<div class="card landingpagepics">
-					
-				</div>
 
-				<div class="card landingpagepics">
-					
-				</div>
-
-				<div class="card landingpagepics">
-					
-				</div>
-
-				<div class="card landingpagepics">
-					
-				</div>
-
-				<div class="card landingpagepics">
-					
-				</div>
-
+			</div>
 
 
 		</div>
-
-
-	</div>
 		
 	</div>
 
@@ -213,12 +215,21 @@
 
 	<!-- FOOTER SECTION -->
 
-	<div id=footerdiv>
+	<div class="container-fluid" id=footerdiv>
 
-		<div id="overlay"></div>
+	<div class="">
+		
+	</div>
+
+	<div id="overlay"></div>
 		
 	</div>
 
 
 </body>
 </html>
+<?php 
+
+	ob_end_flush();
+
+ ?>

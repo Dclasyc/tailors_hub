@@ -1,0 +1,61 @@
+<?php 
+
+	//class definition
+	class Pictures{
+
+		// member viarbles
+
+
+		// memeber functions
+
+		public function uploadAnyFile($dest, $size, $ext){
+
+			//Create variables for file uploads
+
+			$filename = $_FILES['myfile']['name'];
+			$filesize = $_FILES['myfile']['size'];
+			$fileerror = $_FILES['myfile']['error'];
+			$filetype = $_FILES['myfile']['type'];
+			$tmpname = $_FILES['myfile']['tmp_name'];
+
+			//check if file was uploaded
+
+			if($fileerror > 0){
+				$uploadresponse['error'] = "You did not upload any file!";
+				return $uploadresponse;
+			}
+
+			//check File Size
+			if($filesize > $size){
+
+				$uploadresponse['error'] = "File cannot be more than $Size";
+				return $uploadresponse;
+			}
+
+			// pick file type by file ext
+			$filename_arr = explode(".",$filename);
+			$file_ext = end($filename_arr);
+
+			//check if extentions is allowed
+			if(!in_array(strtolower($file_ext), $ext)){
+				$uploadresponse['error'] ='File type not allowed';
+				return $uploadresponse;
+			}
+
+			//destination folder
+			$newfilename = "ch".rand().time().".".$file_ext;
+			$destination = $dest.$newfilename;
+
+			//check if file upload was successfull
+
+			if (move_uploaded_file($tmpname, $destination)) {
+				$uploadresponse['success'] = $newfilename;
+				return $uploadresponse;
+
+			}else{$uploadresponse['error'] ='Could not upload file';
+				return $uploadresponse;
+			}
+		}
+	}
+
+?>
