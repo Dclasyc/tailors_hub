@@ -95,12 +95,24 @@
             <td><?php echo $value['product_name']?></td>
             <td><?php echo $value['product_desc']?></td>
             <td><?php echo $value['product_price']?></td>
-            <td><?php echo $value['productimage_url']?></td>
+            <td><?php if(!empty($value['productimage_url'])){
+
+            ?>
+
+            <img src="designs/<?php echo $value['productimage_url']?>" alt="<?php echo $value['product_name']?>" class="img-fluid"/>
+
+
+            <?php }
+
+            ?>
+              
+
+            </td>
             <td><?php echo $value['category_id']?></td>
             <td><?php echo $value['tailor_id']?></td>
             <td>
-            <a href="editproducts.php?categoryid=<?php echo $productid ?>" class="btn btn-success form-control mb-1" >Edit</a>
-            <a href="deleteproduct.php?productid=<?php echo $productid ?>&productname=<?php echo $value['product_name'];?>" class="btn btn-danger form-control"> Delete</a>
+            <a href="editproducts.php?categoryid=<?php echo $productid ?>" class="btn btn-success form-control mb-1 disabled" >Edit</a>
+            <a href="deleteproduct.php?productid=<?php echo $productid ?>&productname=<?php echo $value['product_name'];?>" class="btn btn-danger form-control disabled"> Delete</a>
             </td>
 
           </tr>

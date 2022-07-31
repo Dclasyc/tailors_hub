@@ -88,6 +88,7 @@
 
             foreach ($customers as $key => $value) {
               $customerid = $value['customer_id'];
+              $customerusername =$value['customer_username'];
           ?>
           <tr>
             <td><?php echo $value['customer_id']?></td>
@@ -100,7 +101,7 @@
             <td><?php echo $value['customer_phone']?></td>
             <td>
               <a href="editcustomers.php?customerid=<?php echo $customerid ?>">Edit Customer_info</a> | 
-              <a href="deletecustomers.php?customerid=<?php echo $customerid ?>&customerusername=<?php echo $value['customer_username'];?>">Delete Customer_info</a>
+              <a href="deletecustomer.php?customerid=<?php echo $customerid ?>&customerusername=<?php echo $value['customer_username'];?>">Delete Customer_info</a>
             </td>
 
           </tr>

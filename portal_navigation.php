@@ -4,6 +4,8 @@
 		session_start();
  ?>
 
+ 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,20 +49,20 @@
          
 		        <li class="nav-item">
 		          <a class="nav-link navtext" href="#">
-		          	Hello
+		          	
 
              <?php 
 
                 if(isset($_SESSION['cusername'])){
-                  echo $_SESSION['cfname']." ".$_SESSION['clname'];
+                  echo 'Hello '.$_SESSION['cfname']." ".$_SESSION['clname'];
                 }
 
                 if(isset($_SESSION['tusername'])){
-                  echo $_SESSION['tfname']." ".$_SESSION['tlname'];
+                  echo 'Hello '.$_SESSION['tfname']." ".$_SESSION['tlname'];
                 }
 
                 if(isset($_SESSION['adminid'])){
-                  echo $_SESSION['adminrole'];
+                  echo 'Hello '.$_SESSION['adminrole'];
                 }
 
              ?>
@@ -80,7 +82,7 @@
 		         ?>
 
 		        <li class="nav-item">
-		          <a class="nav-link navtext" href="logout.php">Log Out </a>
+		          <a class="nav-link navtext" href="logout.php">Log Out</a>
 		        </li>
 
 		        <li class="nav-item dropdown" style=" background-color: #ff8f1f; border-radius:5px !important">
@@ -97,6 +99,8 @@
           		echo "<li><a class='dropdown-item' href='addproduct.php'>Add Product</a></li>";
 
           		echo "<li><a class='dropdown-item' href='addcategories.php'>Add Category</a></li>";
+
+          		echo "<li><a class='dropdown-item' href='tailordashboard.php'>Dashboard</a></li>";
           	 ?>
           </ul>
 
@@ -108,8 +112,10 @@
        	 		}
        	 	 ?>
       </ul>
+      	
       
-        <a href="addproduct.php"><button class="btn" id="btnsell" type="button">SELL PRODUCTS</button></a>
+        	<a href="addproduct.php"><button class="btn" id="btnsell" type="button">SELL PRODUCTS</button></a>
+
       
     </div>
   </div>

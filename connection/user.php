@@ -132,6 +132,7 @@
 					$_SESSION['cusername'] = $row['customer_username'];
 					$_SESSION['cemail'] = $row['customer_email'];
 
+
 					return true;
 
 				}else{
@@ -142,6 +143,8 @@
 				}else{
 					return false;
 			}
+
+
 		}
 		#end customer login
 
@@ -178,7 +181,8 @@
 					$_SESSION['tusername'] = $row['tailor_username'];
 					$_SESSION['temail'] = $row['tailor_email'];
 
-
+                  
+                
 
 					return true;
 
@@ -190,6 +194,8 @@
 				}else{
 					return false;
 			}
+
+			
 		}
 		#end Tailor login
 
@@ -234,6 +240,8 @@
 				}else{
 					return false;
 			}
+
+			
 		}
 
 
@@ -293,7 +301,124 @@
 
 		#End List Customers
 
+
+		#Start Count Tailors
+
+
+		public function getTotalTailors(){
+
+        $statement = $this->conn->prepare("SELECT COUNT(*) as total FROM tailors");
+
+        
+        //execute
+			$statement->execute();
+
+			//get result
+			$result = $statement->get_result();
+
+			$data = array();
+			if($result->num_rows > 0){
+				#fetch row
+				while($row = $result->fetch_assoc()){
+					$data[] = $row;
+				}
+			}
+			return $data;
+
+		}
+
+		#End Count Tailors
+
+
+		#Start Count Customers
+
+		public function getTotalCustomers(){
+
+        $statement = $this->conn->prepare("SELECT COUNT(*) as total FROM customer");
+
+        
+        //execute
+			$statement->execute();
+
+			//get result
+			$result = $statement->get_result();
+
+			$data = array();
+			if($result->num_rows > 0){
+				#fetch row
+				while($row = $result->fetch_assoc()){
+					$data[] = $row;
+				}
+			}
+			return $data;
+
+		}
+
+		#End Count Tailors
+
+
+		#Begin Delete Tailors
+
+		public function deleteTailor($id){
+			// prepare the statment
+			$statement = $this->conn->prepare("DELETE FROM tailors WHERE tailor_id=?");
+
+			// bind parameters
+			$statement->bind_param("i",$id);
+
+			//execute
+
+			$statement->execute();
+
+			// check if record was deleted
+			if($statement->affected_rows == 1){
+				//redirect to listclubs
+				$msg ="category was successfully deleted!";
+				header("Location:dashboard.php?m=$msg");
+				exit;
+			}else{
+				//redirect to listclubs
+				$msg = "Oops! Could not delete record.";
+				header("Location:dashboard.php?err=$msg");
+				exit;
+			}
+		}
+
+		#End Delete Tailors
+
+
+		#Begin Delete Tailors
+
+		public function deleteCustomer($id){
+			// prepare the statment
+			$statement = $this->conn->prepare("DELETE FROM customer WHERE customer_id=?");
+
+			// bind parameters
+			$statement->bind_param("i",$id);
+
+			//execute
+
+			$statement->execute();
+
+			// check if record was deleted
+			if($statement->affected_rows == 1){
+				//redirect to listclubs
+				$msg ="category was successfully deleted!";
+				header("Location:dashboard.php?m=$msg");
+				exit;
+			}else{
+				//redirect to listclubs
+				$msg = "Oops! Could not delete record.";
+				header("Location:dashboard.php?err=$msg");
+				exit;
+			}
+		}
+
+		#End Delete Tailors
+
 	}
+
+
 
 ?>
 

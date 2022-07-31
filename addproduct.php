@@ -3,6 +3,16 @@
 
 include_once "portal_navigation.php";
 
+if(isset($_SESSION['tusername'])){
+
+  }else{
+    $message = "<h5>You need to login as tailor list your products!</h5>";
+
+                  //redirect
+                  header("Location:index.php?m=$message");
+                  session_destroy();
+  }
+
 	//check if add categories button is clicked
 
 

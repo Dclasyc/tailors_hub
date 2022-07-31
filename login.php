@@ -72,6 +72,8 @@
 				
 				</form>
 
+				<p style="text-align:center">Don't have an account? click<a href="customersignup.php"> here</a> to sign up</p>
+
 
 			</div>
 		</div>

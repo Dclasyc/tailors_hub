@@ -89,6 +89,7 @@
 
             foreach ($tailors as $key => $value) {
               $tailorid = $value['tailor_id'];
+              $tailorusername = $value['tailor_username']
           ?>
           <tr>
             <td><?php echo $value['tailor_id']?></td>
@@ -100,8 +101,8 @@
             <td><?php echo $value['tailor_email']?></td>
             <td><?php echo $value['tailor_phone']?></td>
             <td>
-              <a href="edittailors.php?tailorid=<?php echo $tailorid ?> "target="self">Edit Tailor_info</a> | 
-              <a href="deletetailors.php?tailorid=<?php echo $tailorid ?>&tailorusername=<?php echo $value['tailor_username'];?>" target="self">Delete Tailor_info</a>
+              <a href="edittailors.php?tailorid=<?php echo $tailorid ?>" class="btn btn-success mb-1 disabled">Edit Tailor_info</a>  
+              <a href="deletetailor.php?tailorid=<?php echo $tailorid ?>&tailorusername=<?php echo $value['tailor_username'];?>" class="btn btn-danger form-control">Delete Tailor_info</a>
             </td>
 
           </tr>

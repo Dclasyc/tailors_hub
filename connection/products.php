@@ -27,7 +27,7 @@
 		}
 
 
-		#begin getproduct method
+		#begin listproduct method
 
 		public function listProducts(){
 			//prepare statment
@@ -50,7 +50,37 @@
 
 		}
 
-		#End getproducts method
+		#End listproducts method
+
+
+
+		#begin get all product information
+
+		public function getproductinfo(){
+			//prepare statement
+			$statement = $this->conn->prepare("SELECT * FROM product JOIN tailors ON product.tailor_id = tailors.tailor_id;");
+
+			//execute
+			$statement->execute();
+
+			//get result
+			$result = $statement->get_result();
+
+			$data = array();
+			if($result->num_rows > 0){
+				#fetch row
+				while($row = $result->fetch_assoc()){
+					$data[] = $row;
+				}
+			}
+			return $data;
+
+		}
+
+
+		#End get all product information
+
+
 
 		public function insertProducts($name, $description, $price, $category, $tailorid){
 				// prepare statement
@@ -104,14 +134,14 @@
 		#start Edit products
 
 
-		public function editproduct($productname, $productdesc, $productprice, $productimage){
+		public function editproduct($productname, $productdesc, $productprice,$productcategory){
 			// prepare trhe statement
 
-		$statement = $this->conn->prepare("UPDATE product SET product_name=?, product_desc=?, product_price=?, productimage_url=? WHERE product_id=?");
+		$statement = $this->conn->prepare("UPDATE product SET product_name=?, product_desc=?, product_price=?, product_category=? WHERE product_id=?");
 
 			//bind parameters
 
-			$statement->bind_param("ssis", $productname, $productdesc, $productprice, $productimage);
+			$statement->bind_param("ssisi", $productname, $productdesc, $productprice, $productcategory,$productid);
 
 			//execute
 
@@ -129,7 +159,7 @@
 
 		public function deleteProduct($id){
 			// prepare the statment
-			$statement = $this->conn->prepare("DELETE FROM product WHERE category_id=?");
+			$statement = $this->conn->prepare("DELETE FROM product WHERE product_id=?");
 
 			// bind parameters
 			$statement->bind_param("i",$id);
@@ -207,6 +237,115 @@
 
 		# End get categories
 
+		# start get categories for edit
+
+		public function getCategoryForEdit($catid){
+			// prepare statement
+			$statement = $this->conn->prepare("SELECT * FROM product_category WHERE category_id=?");
+
+			// bind the parameter
+			$statement->bind_param("i", $catid);
+
+			// execute
+			$statement->execute();
+
+			// get result
+			$result = $statement->get_result();
+
+			return $result->fetch_assoc();
+		}
+
+		#End get categories for edit
+
+
+
+
+		# start get products regarding to tailor id
+
+		public function getTailorProduct($tailorid){
+			// prepare statement
+			$statement = $this->conn->prepare("SELECT * FROM product WHERE tailor_id=?");
+
+			// bind the parameter
+			$statement->bind_param("i", $tailorid);
+
+			// execute
+			$statement->execute();
+
+			// get result
+			$result = $statement->get_result();
+
+			$data = array();
+			if($result->num_rows > 0){
+				#fetch row
+				while($row = $result->fetch_assoc()){
+					$data[] = $row;
+				}
+			}
+			return $data;
+
+			
+		}
+
+		#End get products regarding to tailor id
+
+
+		# start get products by categories
+
+		public function getProductByCategory($catid){
+			// prepare statement
+			$statement = $this->conn->prepare("SELECT * FROM product JOIN tailors ON product.tailor_id = tailors.tailor_id WHERE product.category_id =?");
+
+			// bind the parameter
+			$statement->bind_param("i", $catid);
+
+			// execute
+			$statement->execute();
+
+			// get result
+			$result = $statement->get_result();
+
+			$data = array();
+			if($result->num_rows > 0){
+				#fetch row
+				while($row = $result->fetch_assoc()){
+					$data[] = $row;
+				}
+			}else{
+				echo "<div class='alert alert-success' style='width:inherit'><h3 style='text-align:center'>No Products Has Been Listed Under This Category!</h3></div>";
+			}
+			
+				return $data;
+			}
+
+			
+	
+
+
+		#End get products by categories
+
+
+
+		# start get products regarding to tailor id for edit
+
+		public function getProductForEdit($productid){
+			// prepare statement
+			$statement = $this->conn->prepare("SELECT * FROM product WHERE product_id=?");
+
+			// bind the parameter
+			$statement->bind_param("i", $productid);
+
+			// execute
+			$statement->execute();
+
+			// get result
+			$result = $statement->get_result();
+
+			return $result->fetch_assoc();
+		}
+
+		#End get products regarding to tailor id for id
+
 
 
 
@@ -256,14 +395,190 @@
 				exit;
 			}else{
 				//redirect to listclubs
-
-				$msg = "Oops! Could not delete club record.";
+				$msg = "Oops! Could not delete record.";
 				header("Location:listcategories.php?err=$msg");
 				exit;
 			}
 		}
 
 		#End Delete Categories
+
+
+
+		#Start insert feedback
+
+			public function addReviews($comment, $productid, $customerid, $tailorid){
+			// prepare the statement
+			$statement = $this->conn->prepare("INSERT INTO review(review_comment,product_id,customer_id,tailor_id) VALUES(?,?,?,?)");
+
+			//bind parameters
+			
+			$statement->bind_param('siii',$comment, $productid, $customerid, $tailorid);
+
+			//execute
+			$statement->execute();
+
+			if($statement->affected_rows == 1){
+				return true;
+			}else{
+				return false.$statement->error;
+			}
+		}
+
+	
+		#End insert feedback
+
+
+		#Start fetch Feedback/Reviews
+
+			public function getReviews($id){
+			//prepare statement
+
+		$statement = $this->conn->prepare("SELECT review.review_comment, customer.customer_firstname, customer.customer_lastname,
+												tailors.tailor_username
+											 	FROM review 
+												JOIN tailors ON review.tailor_id = tailors.tailor_id
+												JOIN customer ON review.customer_id = customer.customer_id
+												JOIN product ON review.product_id = product.product_id
+												WHERE review.product_id =? ");
+			
+			$statement->bind_param("i",$id);
+
+			//execute
+			$statement->execute();
+
+			//get result
+			$result = $statement->get_result();
+
+			$data = array();
+			if($result->num_rows > 0){
+				#fetch row
+				while($row = $result->fetch_assoc()){
+					$data[] = $row;
+				}
+			}
+			return $data;
+		}
+
+
+		#End fetch Review
+
+
+
+		#Start fetch tailor phone number from product clicked
+
+			public function gettailorphone($id){
+			//prepare statement
+
+		$statement = $this->conn->prepare("SELECT tailors.tailor_phone
+											 	FROM tailors 
+												JOIN product ON tailors.tailor_id = product.tailor_id
+												WHERE product.product_id =?;");
+			
+			$statement->bind_param("i",$id);
+
+			//execute
+			$statement->execute();
+
+			//get result
+			$result = $statement->get_result();
+
+			$data = array();
+			if($result->num_rows > 0){
+				#fetch row
+				while($row = $result->fetch_assoc()){
+					$data[] = $row;
+				}
+			}
+			return $data;
+		}
+
+
+		#End fetch Review
+
+
+		#Start Count Products for Admin
+
+		public function getTotalProducts(){
+
+        $statement = $this->conn->prepare("SELECT COUNT(*) as total FROM product");
+
+        
+        //execute
+			$statement->execute();
+
+			//get result
+			$result = $statement->get_result();
+
+			$data = array();
+			if($result->num_rows > 0){
+				#fetch row
+				while($row = $result->fetch_assoc()){
+					$data[] = $row;
+				}
+			}
+			return $data;
+
+		}
+
+		#End Count Products for Admin
+
+
+		#Start Count Products for tailor
+
+		public function getTailorTotalProducts($tailorid){
+
+        $statement = $this->conn->prepare("SELECT COUNT(*) as myproducts FROM product WHERE tailor_id=?");
+
+        // Bind parameters
+
+        $statement->bind_param("i",$tailorid);
+        //execute
+			$statement->execute();
+
+			//get result
+			$result = $statement->get_result();
+
+			$data = array();
+			if($result->num_rows > 0){
+				#fetch row
+				while($row = $result->fetch_assoc()){
+					$data[] = $row;
+				}
+			}
+			return $data;
+
+		}
+
+		#End Count Products for Tailor
+
+
+		#Start Count Categories
+
+		public function getTotalCategories(){
+
+        $statement = $this->conn->prepare("SELECT COUNT(*) as total FROM product_category");
+
+        
+        //execute
+			$statement->execute();
+
+			//get result
+			$result = $statement->get_result();
+
+			$data = array();
+			if($result->num_rows > 0){
+				#fetch row
+				while($row = $result->fetch_assoc()){
+					$data[] = $row;
+				}
+			}
+			return $data;
+
+		}
+
+		#End Count Categories
+
 	}
 
  ?>

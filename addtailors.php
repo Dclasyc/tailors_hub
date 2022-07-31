@@ -1,6 +1,8 @@
 
 <?php
 
+include_once "portal_navigation.php";
+
 	//check if add Tailor button is clicked
 
 
@@ -141,7 +143,7 @@ if(isset($_POST['btnaddtailor'])){
 
           
 
-          <input type="submit" name="btnsignup" class="btn btn-primary" id="btnaddtailor" value="Add Tailor">
+          <input type="submit" name="btnsignup" class="btn mybuttons mb-3" id="btnaddtailor" value="Add Tailor">
           
         </form>
 

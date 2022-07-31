@@ -54,10 +54,10 @@
                  <div class="mb-3">
                    <input type="button" class="btn mybuttons form-control" name="listcategories" id="listcategories" value="List Categories">
                  </div>
-          </form>
+            </form>
 
 
-           </div>
+         </div>
 
            <!-- dashboard main panel -->
            <div class="col-md-9 p-5" id="dasboardscreen" style="min-height: 10px; background-color:#fff; box-shadow: 0px 0px 3px 1px; margin-left: 30px;">
@@ -74,6 +74,133 @@
               }
 
               ?>
+              <!-- overview cards -->
+           <div class="row">
+
+                <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-success o-hidden h-100">
+              <div class="card-body">
+                <div>
+                  <i class="fa fa-users" style='font-size:24px'></i>
+                </div>
+                <?php 
+                  include_once "connection/user.php";
+                  $objcount = new User;
+
+                  $counttailors = $objcount->getTotalTailors();
+                  foreach ($counttailors as $key => $value) {
+                    
+                 ?>
+                <div class="mr-5"><?php echo $value['total'];?> Tailors</div>
+
+                <?php 
+                  }
+                 ?>
+
+              </div>
+              <a class="card-footer text-white clearfix small z-1" href="">
+                <span class="float-left"></span>
+                <span class="float-right">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-danger o-hidden h-100">
+              <div class="card-body">
+                <div>
+                  <i class="fa fa-list"></i>
+                </div>
+
+               <?php 
+                  include_once "connection/user.php";
+                  $objcount = new User;
+
+                  $countcustomers = $objcount->getTotalCustomers();
+                  foreach ($countcustomers as $key => $value) {
+                    
+                 ?>
+                <div class="mr-5"><?php echo $value['total'];?> Customers</div>
+
+                <?php 
+                  }
+                 ?>
+
+              </div>
+              <a class="card-footer text-white clearfix small z-1" href="">
+                <span class="float-left"></span>
+                <span class="float-right">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-primary o-hidden h-100">
+              <div class="card-body">
+                <div>
+                  <i class="fa fa-users" style='font-size:24px'></i>
+                </div>
+
+                <?php 
+                  include_once "connection/products.php";
+                  $objcount = new Products;
+
+                  $countproducts = $objcount->getTotalProducts();
+                  foreach ($countproducts as $key => $value) {
+                    
+                 ?>
+                <div class="mr-5"><?php echo $value['total'];?> Products</div>
+
+                <?php 
+                  }
+                 ?> 
+
+              </div>
+              <a class="card-footer text-white clearfix small z-1" href="">
+                <span class="float-left"></span>
+                <span class="float-right">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-warning o-hidden h-100">
+              <div class="card-body">
+                <div>
+                  <i class="fa fa-list"></i>
+                </div>
+
+                <?php 
+                  include_once "connection/products.php";
+                  $objcount = new Products;
+
+                  $countcategories = $objcount->getTotalCategories();
+                  foreach ($countcategories as $key => $value) {
+                    
+                 ?>
+                <div class="mr-5"><?php echo $value['total'];?> Categories</div>
+
+                <?php 
+                  }
+                 ?> 
+
+              </div>
+              <a class="card-footer text-white clearfix small z-1" href="">
+                <span class="float-left"></span>
+                <span class="float-right">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+        </div>
              
            </div>
          </div>

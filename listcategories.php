@@ -69,7 +69,7 @@
             //create club object
              $categoryobj = new Products();
 
-             //reference list clubs method
+             //reference list categories method
   
              $categories = $categoryobj->getCategories();
 

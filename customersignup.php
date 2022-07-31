@@ -90,7 +90,7 @@ if(isset($_POST['btnsignup'])){
   <div class="row">
     <div class="col-md-6 mt-3 offset-3">
 
-        <h2 style="text-align:center">Customer Info</h2>
+        <h2 style="text-align:center">Customer Signup Information</h2>
 
         <div>
         <?php 
@@ -105,7 +105,7 @@ if(isset($_POST['btnsignup'])){
         ?>
         </div>
 
-        <form action="" method="post">
+        <form action="" method="post" class="form-control mb-3">
 
         	<label class="form-label">Username</label>
           <input type="text" name="username" id="username" class="form-control mb-3" value="<?php if(isset ($_POST['username'])){ echo $_POST['username'];} ?>">
@@ -146,7 +146,7 @@ if(isset($_POST['btnsignup'])){
 
           
 
-          <input type="submit" name="btnsignup" class="btn btn-primary mb-3" id="btnsignup" value="Sign Up">
+          <input type="submit" name="btnsignup" class="btn mybuttons mb-3" id="btnsignup" value="Sign Up">
           
         </form>
 

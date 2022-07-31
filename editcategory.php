@@ -3,9 +3,19 @@
 
 include_once "portal_navigation.php";
 
- if($_SERVER['REQUEST_METHOD']== 'POST'){
+//fetch existing data
+
+include_once "connection/products.php";
+$catobj = new Products();
+
+$data = $catobj->getCategoryForEdit($_REQUEST['categoryid']);
 
 
+      echo "<pre>";
+      print_r($data);
+      echo "</pre>";
+
+ if(isset($_POST['btneditcategories'])){
 
 	//validate inputs
 		if(empty($_POST['categories'])){
@@ -30,7 +40,7 @@ include_once "portal_navigation.php";
 
 
       //store what it returns in output variable
-      $output = $categoryobj->editCategory($categoryname, $categoryid);
+      $output = $categoryobj->editCategory($categoryname, $_REQUEST['categoryid']);
 
       //check if its sucessfull
 
@@ -73,10 +83,11 @@ include_once "portal_navigation.php";
         ?>
         </div>
 
-        <form action="editcategory.php?categoryid=<?php if(isset($_REQUEST['categoryid'])){echo $_REQUEST['categoryid'];} ?>" method="post">
+        <form name="addcategories" action="editcategory.php?categoryid=<?php if(isset($_REQUEST['categoryid'])){echo $_REQUEST['categoryid'];} ?>" method="post">
 
         	<label class="form-label">Edit Category</label>
-          <input type="text" name="categories" id="categories" class="form-control mb-3" value="<?php if(isset ($_POST['category_name'])){ echo $_POST['category_name'];} ?>">
+          <input type="text" name="categories" id="categories" class="form-control mb-3" value="<?php if(isset ($data['category_name'])){echo $data['category_name'];} ?>">
+
            <?php 
 
                   if(!empty($errors['category_name'])) {

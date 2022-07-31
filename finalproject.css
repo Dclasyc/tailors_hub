@@ -160,7 +160,7 @@
   
 
   .sidepanellist {
-    border: 1px solid #fff;
+    border: 0px solid #fff;
     border-radius: 5px;
     height: 70px;
     width: 350px;
@@ -220,16 +220,16 @@
   /*Product Information Page*/
 
 .productinfoimg{
-    height: 650px;
-    border: 1px solid #a2a2a2;
+    height: 600px;
+    border: 0px solid #a2a2a2;
    /* box-shadow: 0px 0px 2px 2px;*/
     margin-bottom: 30px;
   }
 
 
   .card-imginfo-top{
-    width: inherit!important;
-    height: inherit !important;
+    width: 400px !important;
+    height:500px !important;
     box-shadow: 0px 0px 3px 1px #a2a2a2;
 
   }

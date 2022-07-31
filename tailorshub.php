@@ -2,7 +2,13 @@
 
 	include_once "portal_navigation.php";
 
+	// var_dump($_SESSION)
+
  ?>
+
+
+
+
 
 <!-- BODY OF WEBPAGE -->
 
@@ -13,6 +19,8 @@
 
 
 		<div class="col-lg-12 " id="adsdiv">
+
+			
 			
 			<!-- Ads Div -->
 
@@ -55,26 +63,39 @@
 		
 		<div class="col-lg-4" id="sidepanel">
 
-			<!-- Populate Categories here -->
+			<h5 style="text-align:center" class="me-5 pe-4">SEE PRODUCTS BY CATEGORIES</h5>
 
+			<!-- Populate Categories here -->
+		
 						<?php
                   include_once "connection/products.php";
                   $categoryobj = new Products();
                   $categories = $categoryobj->getCategories();
 
+                  // $options = "<option value''>--Categories--</option>";
+
                   foreach ($categories as $key => $value) {
                     $categoryid = $value['category_id'];
                     $categoryname = $value['category_name'];
+                    
                  
             ?>
 
-			<div class='row sidepanellist' class='sidepanellist' id='menscasual' style='display:flex; justify-content: space-between;'>
+       
+				<form method="get" action="tailorshubbycategory.php">
+
+				<button type="submit" name="btnviewbycategories" style="border:0px">
+				<div class='row sidepanellist' class='sidepanellist' id='menscasual' style='display:flex; justify-content: space-between;'>
+
 				<h4>
+					<input type="hidden" name="categoryid" value="<?php echo $categoryid ?>">
 					<?php 
 							echo $categoryname
 					 ?>
 				</h4>
 			</div>
+			</button>
+			</form>
 
 			<?php 
 
@@ -82,8 +103,8 @@
 
 			 ?>
 
-
 		</div>
+		
 
 
 		<div class="col-lg-8" id=indexpicsdiv>
@@ -91,7 +112,7 @@
 				<?php
                   include_once "connection/products.php";
                   $prodobj = new Products();
-                  $productlist = $prodobj->listProducts();
+                  $productlist = $prodobj->getproductinfo();
 
                   if(count($productlist)> 0){
                   foreach ($productlist as $key => $value) {
@@ -100,6 +121,8 @@
                     $productprice = $value['product_price'];
                     $productname = $value['product_name'];
                     $productdesc = $value['product_desc'];
+                    $tailorusername = $value['tailor_username'];
+                    $tailorid = $value['tailor_id'];
                          
             ?>
       <form method="post" action="productinformation.php">
@@ -114,10 +137,12 @@
                   <input type="hidden" name="price" value="<?php echo $value['product_price']; ?>">
                   <input type="hidden" name="productid" value="<?php echo $value['product_id']; ?>">
                   <input type="hidden" name="productname" value="<?php echo $value['product_name']; ?>">
-                  <input type="hidden" name="productpicture" value="<?php echo $value['productimage_url']; ?>">
+                  <input type="hidden" name="productpicture" value="<?php echo $value['productimage_url']?>">
                   <input type="hidden" name="productdescription" value="<?php echo $value['product_desc']; ?>">
+                  <input type="hidden" name="tailorusername" value="<?php echo $value['tailor_username']; ?>">
+                  <input type="hidden" name="tailorid" value="<?php echo $value['tailor_id']; ?>">
 
-          			<button class="btn mybuttons ms-4" id="btnorder">Order</button>
+          			<button class="btn ms-4" id="btnorder" name="btnorder">Order</button>
 					    </p>
 
 					  </div>

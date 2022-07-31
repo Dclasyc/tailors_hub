@@ -14,7 +14,7 @@
   <?php 
 
     if(isset($_REQUEST['btndelete'])){
-      #delete club
+      #delete category
       include_once("connection/products.php");
 
       // create object
@@ -22,6 +22,8 @@
 
       //make use of delect method
       $obj->deleteCategory($_REQUEST['categoryid']);
+
+     
     }
 
     if(isset($_REQUEST['btncancel'])){
@@ -34,15 +36,14 @@
 
   <div class="row">
     <div class="col-md-8 mb-4">
-      <?php 
-
+      <?php                                                                                                                                
         if(isset($_REQUEST['categoryid'])){
       ?>
       <div class="alert alert-danger">
         <h3>Are you sure you want to delete <?php echo $_REQUEST['categoryname']; ?></h3>
       </div>
 
-    <form method="post" action="deletecategory.php?categoryid=<?php echo $_REQUEST['categoryid'] ?>&clubname=<?php echo $_REQUEST['categoryname'];?>">
+    <form method="post" action="deletecategory.php?categoryid=<?php echo $_REQUEST['categoryid'] ?>&categoryname=<?php echo $_REQUEST['categoryname'];?>">
 
         <button type="submit" name="btndelete" class="btn btn-danger">Yes</button>
         <button type="submit" name="btncancel" class="btn btn-secondary">NO</button>
