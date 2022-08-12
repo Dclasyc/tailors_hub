@@ -8,11 +8,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<meta name="description" content="get the best tailors for your various fashion needs" />
+	<meta name="Keywords" content=" tailors; fashion; attires; clothes; wardrobe; male fashion; female fashion; fashion trend; tailors hub; aso ebi; trousers" />
+	<meta name="author" content=" Oladipo Samuel Akarigbo" />
+
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
-
-	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"> -->
-
-	<!-- <link rel="stylesheet" type="text/css" href="finalproject.css"> -->
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/all.min.css">
+	<script src="bootstrap/js/all.min.js"></script>
 
 	<style>
   <?php include "finalproject.css" ?>

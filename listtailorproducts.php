@@ -4,7 +4,7 @@ session_start();
 
  ?>
   <!-- Page Content -->
-  <div class="container">
+  <div class="row">
 
     <!-- Page Heading/Breadcrumbs -->
     <h3 class="mt-4 mb-3">
@@ -117,7 +117,7 @@ session_start();
             <td><?php echo $value['tailor_id']?></td>
             <td>                                                                                                                                                                                                                                                                        
             <a href="editproduct.php?productid=<?php echo $productid ?>" class="btn btn-success form-control mb-1" >Edit</a>
-            <a href="deleteproduct.php?productid=<?php echo $productid ?>&productname=<?php echo $value['product_name'];?>" class="btn btn-danger form-control"> Delete</a>
+            <a href="deleteproductbytailor.php?productid=<?php echo $productid ?>&productname=<?php echo $value['product_name'];?>" class="btn btn-danger form-control" name="btndelete"> Delete</a>
             </td>
 
           </tr>

@@ -32,6 +32,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btnaddproduct'])){
         $errors['productprice'] = "Product price field cannot be empty";
       }
 
+
+    if(empty($_POST['category'])){
+        $errors['category'] = "Category field cannot be empty";
+      }
+
       if (empty($errors)) {
 
 
@@ -74,14 +79,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btnaddproduct'])){
 
 ?>
 
-  <div class="row">
-    <div class="col-md-6 mt-3 offset-3">
+  <div class="row" style="width:98%; justify-content:center;">
+    <div class="col-md-6 mt-3 mb-3 ms-3">
 
         <h2 style="text-align:center">Product Information</h2>
 
+
+
         <div>
           
-          <?php
+          
+
+      <?php
         if(isset($_REQUEST['m'])){
       ?>
 
@@ -90,8 +99,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btnaddproduct'])){
       </div>
 
       <?php
-      }
 
+      }
+      
       ?>
       </div>
 
@@ -108,7 +118,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btnaddproduct'])){
         ?>
         </div>
 
-        <form action="" method="post" class="mb-5" enctype="multipart/form-data">
+        <form action="" method="post" class="mb-3 p-3 form-control" enctype="multipart/form-data">
 
         	<label class="form-label">Product name</label>
           <input type="text" name="productname" id="productname" class="form-control mb-3" value="<?php if(isset ($_POST['productname'])){ echo $_POST['productname'];} ?>">
@@ -158,5 +168,3 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btnaddproduct'])){
   include_once "footer.php";
 
 ?>
- </body>
-</html>

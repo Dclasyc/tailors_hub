@@ -64,12 +64,12 @@ if(isset($_POST['btnpostreview']) && $_SESSION['cusername']){
 
  <!-- Body 0f Page -->
 
- <div class="container-fluid mt-3">
- 	<div class="row">
+ <div class="row mt-3" style="width:98%; justify-content: center;">
+ 	<div class="row" id="top">
 
  		<!-- 1st div -->
 
- 		<div class="col-md-8 m-3">
+ 		<div class="col-md-7 col-lg-8 m-3">
 
  		<?php 
 
@@ -86,8 +86,8 @@ if(isset($_POST['btnpostreview']) && $_SESSION['cusername']){
         ?>
 
 
- 			<div class="productinfoimg mt-2 mb-3">
-					<img class="card-imginfo-top" src="designs/<?php echo $_POST['productpicture']?>" alt="<?php echo $_POST['productname'] ?>">
+ 			<div class="productinfoimg mt-2 mb-3" id="prodinfocarddetaildiv">
+					<img class="card-imginfo-top" id="productinfopicture" src="designs/<?php echo $_POST['productpicture']?>" alt="<?php echo $_POST['productname'] ?>">
 					  <div class="card-body mt-4">
 
 					  	<div id="card-title-div" class="mb-5">
@@ -101,7 +101,7 @@ if(isset($_POST['btnpostreview']) && $_SESSION['cusername']){
 					    </div>
 
 					    <div class="mb-5" id="cardbuttondiv">
-					    	<button type="button" class="btn mybuttons mt-3">See Seller Contact</button>
+					    	<a href="#top"><button type="button" class="btn mybuttons mt-3" id="btnseesellerdetails">See Seller Details</button></a>
 					    </div>
 
 					  </div>
@@ -117,7 +117,7 @@ if(isset($_POST['btnpostreview']) && $_SESSION['cusername']){
 
  		<!-- 2nd div -->
 
- 	<div class="col-md-3 mt-4 ms-3">
+ 	<div class="col-md-4 col-lg-3 mt-4 ms-3">
 
  			<div id="prodpricediv" class="sideprodinfodiv mb-3">
  				<h1>&#8358 <?php echo number_format($_POST['price']) ?></h1>
@@ -136,7 +136,7 @@ if(isset($_POST['btnpostreview']) && $_SESSION['cusername']){
                   	$tailorcontact = $value['tailor_phone'];
                    
                  ?>
- 				<button type="button" class="btn mybuttons mt-3 mb-2 form-control" id="sellerbtn"><b><?php echo $tailorcontact ?></b></button>
+ 				<button type="button" class="btn mybuttons mt-3 mb-2 form-control" id="sellerbtn" style="justify-content:center;"><i class="fa fa-mobile-alt" style="color:#ff8f1f; font-size: 30px;"></i> <b style="font-size :25px;"><?php echo $tailorcontact ?></b></button>
  				<?php 
  					}
  				}
@@ -154,7 +154,7 @@ if(isset($_POST['btnpostreview']) && $_SESSION['cusername']){
  							<textarea cols="35" rows="5" name="postreview"></textarea>
  							<button type="submit" name="btnpostreview" id="btnpostreview" class="btn mybuttons" style="align-self: flex-start;">Post</button>
 
- 							<input type="hidden" name="price" value="<?php echo $_POST['price']; ?>">
+ 				  <input type="hidden" name="price" value="<?php echo $_POST['price']; ?>">
                   <input type="hidden" name="productid" value="<?php echo $_POST['productid']; ?>">
                   <input type="hidden" name="productname" value="<?php echo $_POST['productname']; ?>">
                   <input type="hidden" name="productpicture" value="<?php echo $_POST['productpicture']?>">
@@ -175,23 +175,20 @@ if(isset($_POST['btnpostreview']) && $_SESSION['cusername']){
  				<ol style="text-align: start">
 
  					<li>
- 						Don't pay in advance, including for delivery
+ 						Don't pay upfront, including for fees for delivery.
  					</li>
 
  					<li>
- 						 Meet the seller at a safe public place
+ 						 Meet the seller at a public place you have ascertained safe.
  					</li>
  					
  					<li>
- 						 Inspect the item and ensure it's exactly what you want
+ 						 On delivery, check the delivered item and ensure it matches what you want.
  					</li>
 					
- 					<li>
- 						 On delivery, check that the item delivered is what was inspected
- 					</li>
 					
  					<li>
- 						 Only pay when you're satisfied
+ 						 Only pay when you are satisfied of product delivered.
  					</li>
 					
  				</ol>

@@ -86,9 +86,9 @@ if(isset($_POST['btnsignup'])){
 
 ?>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-6 mt-3 offset-3">
+<div class="row" style="width:98%">
+  <div class="row" style="justify-content: center; margin-left: 10px;">
+    <div class="col-md-6 mt-3">
 
         <h2 style="text-align:center">Customer Signup Information</h2>
 
@@ -110,7 +110,7 @@ if(isset($_POST['btnsignup'])){
         	<label class="form-label">Username</label>
           <input type="text" name="username" id="username" class="form-control mb-3" value="<?php if(isset ($_POST['username'])){ echo $_POST['username'];} ?>">
 
-        	<label class="form-label">firstname</label>
+        	<label class="form-label">Firstname</label>
           <input type="text" name="firstname" id="firstname" class="form-control mb-3" value="<?php if(isset ($_POST['firstname'])){ echo $_POST['firstname'];} ?>">
 
           <label class="form-label">Lastname</label>
@@ -153,5 +153,9 @@ if(isset($_POST['btnsignup'])){
      </div>
    </div>
   </div>
- </body>
-</html>
+ 
+ <?php 
+
+    include_once "footer.php";
+
+   ?>

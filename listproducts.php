@@ -2,7 +2,7 @@
 
  ?>
   <!-- Page Content -->
-  <div class="container">
+  <div class="row">
 
     <!-- Page Heading/Breadcrumbs -->
     <h3 class="mt-4 mb-3">

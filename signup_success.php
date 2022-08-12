@@ -13,7 +13,7 @@
  </head>
  <body>
 
- 	<div class="col-md-12">
+ 	<div class="col-md-11 p-4" style="justify-content: center;">
 			<h2 class="alert alert-success">Sign Up Successful! <span><a href="login.php">click here<a></span> to login</h2>
 		</div>
  

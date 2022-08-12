@@ -26,10 +26,13 @@
 			}
 
 			//check File Size
+
 			if($filesize > $size){
 
-				$uploadresponse['error'] = "File cannot be more than $Size";
+				$uploadresponse['error'] = "File cannot be more than $size";
 				return $uploadresponse;
+
+				// echo '<script type="text/javascript">alert("'.$uploadresponse.'")</script>';
 			}
 
 			// pick file type by file ext

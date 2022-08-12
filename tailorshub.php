@@ -63,7 +63,7 @@
 		
 		<div class="col-lg-4" id="sidepanel">
 
-			<h5 style="text-align:center" class="me-5 pe-4">SEE PRODUCTS BY CATEGORIES</h5>
+			<h5 style="text-align:" class="">SEE PRODUCTS BY CATEGORIES</h5>
 
 			<!-- Populate Categories here -->
 		

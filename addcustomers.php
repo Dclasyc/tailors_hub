@@ -1,6 +1,6 @@
 
 <?php
-
+include_once "portal_navigation.php";
 	//check if register button is clicked
 
 
@@ -68,11 +68,11 @@ if(isset($_POST['btnaddcustomer'])){
       //check if its sucessfull
 
       if($output == true){
-        $msg = "Tailor was successfully added";
+        $msg = "Customer was successfully added";
         // redirect
-        header("Location:listcustomers.php?m=$msg");
+        header("Location:dashboard.php?m=$msg");
       }else{
-        $errors[] = "Oops! could not add tailor.".$output;
+        $errors[] = "Oops! could not add customer.".$output;
       }
  	}
 
@@ -81,11 +81,11 @@ if(isset($_POST['btnaddcustomer'])){
 
 ?>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 mt-3 offset-3">
+<div class="row" style="width:98%">
+  <div class="row" style="justify-content:center; margin-left:10px ;">
+    <div class="col-md-6 mt-3">
 
-        <h2 style="text-align:center">Tailor Info</h2>
+        <h2 style="text-align:center">Customer Info</h2>
 
         <div>
         <?php 
@@ -100,7 +100,7 @@ if(isset($_POST['btnaddcustomer'])){
         ?>
         </div>
 
-        <form action="" method="post">
+        <form action="" method="post" class="form-control mb-3">
 
         	<label class="form-label">Username</label>
           <input type="text" name="username" id="username" class="form-control mb-3" value="<?php if(isset ($_POST['username'])){ echo $_POST['username'];} ?>">
@@ -141,7 +141,7 @@ if(isset($_POST['btnaddcustomer'])){
 
           
 
-          <input type="submit" name="btnsignup" class="btn btn-primary" id="btnaddtailor" value="Add Tailor">
+          <input type="submit" name="btnaddcustomer" class="btn mybuttons mb-3" id="btnaddcustomer" value="Add Customer">
           
         </form>
 

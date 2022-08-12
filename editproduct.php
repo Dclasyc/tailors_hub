@@ -11,6 +11,7 @@ include_once "connection/products.php";
       $data = $prodobj->getProductForEdit($_REQUEST['productid']);
 
 
+
       // echo "<pre>";
       // print_r($data);
       // echo "</pre>";
@@ -54,25 +55,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btneditproduct'])){
       $productobj = new Products();
 
       $productprice = ($_POST['productprice']);
-      $productcategory =($_POST['category']);
+      $productcategory = ($data['category_id']);
       $tailorid =$_SESSION['t_id'];
+
+
       
+      // Update product in database
       
 
-      //store what it returns in output variable
-      $output = $productobj->editproduct($productname, $productdescription, $productprice, $productcategory, $tailorid);
+      //reference insert product
+      $output = $productobj->editproductbytailor($productname, $productdescription, $productprice, $productcategory, $data['product_id']);
 
       //check if its sucessfull
 
-      if($output == true){
+      if($output === 1){
         $msg = "product was successfully updated.";
         // redirect
         header("Location:tailordashboard.php?m=$msg");
       }elseif ($output == 0){
-          $msg = "No Changes was made!";
-            header("Location: tailordashboard.php?m=$msg");
+          $msgs = "No Changes were made!";
+            header("Location: tailordashboard.php?m=$msgs");
         }else{
-          $errors[] = "Oops! Could not add club. ".$output;
+          $errors[] = "Oops! Could not update product. ".$output;
        }
  	}
 
@@ -81,8 +85,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btneditproduct'])){
 
 ?>
 
-  <div class="row">
-    <div class="col-md-6 mt-3 offset-3">
+  <div class="row" style="width: 98%; justify-content:center;">
+    <div class="col-md-6 mt-3 ms-3 p-3">
 
         <h2 style="text-align:center">Product Information</h2>
 
@@ -115,7 +119,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btneditproduct'])){
         ?>
         </div>
 
-        <form action="editproduct.php?productid=<?php if(isset($_REQUEST['productid'])){
+        <form name="addproduct" id="addproduct" action="editproduct.php?productid=<?php if(isset($_REQUEST['productid'])){
           echo $_REQUEST['productid'];
         }?>" method="post" class="mb-5" enctype="multipart/form-data">
 
@@ -130,31 +134,41 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btneditproduct'])){
 
           
           <label>Product Image</label>
-          <input type="file" class="form-control mb-3" id="productimage" name='myfile'>
+          <input type="file" class="form-control mb-3" id="productimage" name='myfile' >
             
 
           <div class="">
             <label for="category">Product Category</label>
             <select name="category" id="category" class="form-select">
               <option value="">Choose Category</option>
-              <?php 
+              <?php
+
+
                   include_once "connection/products.php";
                   $categoryobj = new Products();
                   $categories = $categoryobj->getCategories();
+
 
                   foreach ($categories as $key => $value) {
                     $categoryid = $value['category_id'];
                     $categoryname = $value['category_name'];
 
+                    if ($categoryid == $data['category_id']) {
+                    echo "<option value ='$categoryid' selected>$categoryname</option>";
+                  }else{
+
                     echo "<option value='$categoryid'>$categoryname</option>";
                   }
+                }
+                
+              
               ?>
           </div>
 
           <input type="hidden" name="tailorid" value="<?php echo $_SESSION['t_id'] ?>">
           
 
-          <input type="submit" name="btneditproduct" class="btn mybuttons mt-3" id="btneditproduct" value="Edit Product">
+          <input type="submit" name="btneditproduct" class="btn mybuttons mt-3" id="btneditproduct" value="Update Product">
           
         </form>
 

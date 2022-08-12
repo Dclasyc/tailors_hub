@@ -50,12 +50,12 @@
 					
     ?>			
 
-  <div class="container mt-5 mb-5">
-	<div class="row justify-content-center">
-		<div class="col-5 ">
+  <div class="row" style="width:98%">
+  <div class="row mt-5 mb-5" style="justify-content: center; margin-left: 10px;">
+		<div class="col-md-5 ">
 			 <h2 style="text-align:center">Login</h2>
 
-				<form action="" method="post" class="form-control mt-5 p-5">
+				<form action="" method="post" class="form-control mt-3 p-5" id="loginsignupforms">
 						
 				<div class="mb-3">
 					<label for="email">E-mail</label>

@@ -58,7 +58,7 @@ if(isset($_POST['btnaddcategories'])){
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6 mt-3 offset-3">
+    <div class="col-md-6-offset-3 mt-3">
 
         <h2 style="text-align:center">Category Info</h2>
 
@@ -99,7 +99,7 @@ if(isset($_POST['btnaddcategories'])){
           <input type="text" name="categories" id="categories" class="form-control mb-3" value="<?php if(isset ($_POST['categories'])){ echo $_POST['categories'];} ?>">
           
 
-          <input type="submit" name="btnaddcategories" class="btn btn-primary" id="btnaddcategories" value="Add Category">
+          <input type="submit" name="btnaddcategories" class="btn mybuttons" id="btnaddcategories" value="Add Category">
           
         </form>
 

@@ -6,7 +6,7 @@
 
  <!-- Page Content -->
   
-  <div class="container-fluid">
+  <div class="row" id="dashboardcontainerdiv">
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3 ml-2" style="text-align: center;">
@@ -27,37 +27,33 @@
          <div class="row mb-3" style="padding-left: 30px;">
 
           <!-- dashboard side panel -->
-           <div class="col-md-2 pl-3" style="min-height: 400px; background-color:#fff; box-shadow: 0px 0px 3px 1px;">
+           <div class="col-md-2 pl-3" style="height: 480px; background-color:#fff; box-shadow: 0px 0px 3px 1px;" id="dashboardsidepanel">
                  <div style="width: 100%; height: 200px; box-shadow: 0px 0px 3px 1px; display: flex; justify-content: center; align-items: center;" class="mb-3 mt-3">
-                   <h3>
-                     <?php 
 
-                        if(isset($_SESSION['adminid'])){
-                         echo $_SESSION['adminrole'];
-                         }
-                     ?>
-                   </h3>
+                    
+                     <i class="fa fa-user" style="font-size:130px;color:#ff8f1f;"></i>
+                  
                  </div>
 
                   <div class="mb-3">
-                   <input type="button" class="btn mybuttons form-control" name="listtailors" id="listtailors" value="List Tailors">
+                   <input type="button" class="btn mybuttons form-control" name="listtailors" id="listtailors" value="View All Tailors">
                  </div>
 
                  <div class="mb-3">
-                   <input type="button" class="btn mybuttons form-control" name="listcustomers" id="listcustomers" value="List Customers">
+                   <input type="button" class="btn mybuttons form-control" name="listcustomers" id="listcustomers" value="View All Customers">
                  </div>
 
                  <div class="mb-3">
-                   <input type="button" class="btn mybuttons form-control" name="listproducts" id="listproducts" value="List Products">
+                   <input type="button" class="btn mybuttons form-control" name="listproducts" id="listproducts" value="View All Products">
                  </div>
 
                  <div class="mb-3">
-                   <input type="button" class="btn mybuttons form-control" name="listcategories" id="listcategories" value="List Categories">
+                   <input type="button" class="btn mybuttons form-control" name="listcategories" id="listcategories" value="View All Categories">
                  </div>
-            </form>
-
 
          </div>
+
+         </form>
 
            <!-- dashboard main panel -->
            <div class="col-md-9 p-5" id="dasboardscreen" style="min-height: 10px; background-color:#fff; box-shadow: 0px 0px 3px 1px; margin-left: 30px;">
@@ -77,7 +73,7 @@
               <!-- overview cards -->
            <div class="row">
 
-                <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="col-md-3 col-sm-6 mb-3">
             <div class="card text-white bg-success o-hidden h-100">
               <div class="card-body">
                 <div>
@@ -91,7 +87,7 @@
                   foreach ($counttailors as $key => $value) {
                     
                  ?>
-                <div class="mr-5"><?php echo $value['total'];?> Tailors</div>
+                <div class="mr-5" id="totaldiv"><?php echo $value['total'];?> Tailors</div>
 
                 <?php 
                   }
@@ -111,7 +107,7 @@
             <div class="card text-white bg-danger o-hidden h-100">
               <div class="card-body">
                 <div>
-                  <i class="fa fa-list"></i>
+                  <i class="fa fa-users"></i>
                 </div>
 
                <?php 
@@ -142,7 +138,7 @@
             <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
                 <div>
-                  <i class="fa fa-users" style='font-size:24px'></i>
+                  <i class="fa fa-list" style='font-size:24px'></i>
                 </div>
 
                 <?php 

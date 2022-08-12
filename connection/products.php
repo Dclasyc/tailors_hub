@@ -96,13 +96,14 @@
 				//create object of PictureUpload
 				include_once "connection/pictureupload";
 				$obj = new Pictures;
-				$imageurl = $obj->uploadAnyFile("designs/",3024876, $ext);
+				$imageurl = $obj->uploadAnyFile("designs/",1048576, $ext);
 
+				
 				// echo "<pre>";
 				// print_r($imageurl);
 				// echo "<pre>";
 				// exit();
-				
+
 
 				if(array_key_exists('success', $imageurl)){
 
@@ -115,8 +116,7 @@
 			//execute
 			$statement->execute();
 
-			// var_dump($statement->affected_rows);
-			// exit();
+			
 
 			if($statement->affected_rows == 1){
 				return true;
@@ -128,7 +128,8 @@
 				return $imageurl['error'];
 			
 			}
-		}
+		
+	}
 		#end insert products
 
 		#start Edit products
@@ -237,6 +238,35 @@
 
 		# End get categories
 
+
+		// # Start get categories for product edit
+
+		// public function getCategoriesforproductedit(){
+		// 	//prepare statement
+
+		// 	$statement = $this->conn->prepare("SELECT * FROM product_category ORDER BY category_name ASC");
+			
+
+		// 	//execute
+		// 	$statement->execute();
+
+		// 	//get result
+		// 	$result = $statement->get_result();
+
+		// 	$data = array();
+		// 	if($result->num_rows > 0){
+		// 		#fetch row
+		// 		while($row = $result->fetch_assoc()){
+		// 			$data[] = $row;
+		// 		}
+		// 	}
+		// 	return $data;
+		// }
+
+		// # End get categories for product edit
+
+
+
 		# start get categories for edit
 
 		public function getCategoryForEdit($catid){
@@ -288,6 +318,63 @@
 		}
 
 		#End get products regarding to tailor id
+
+
+		#Begin Delete Product by tailor
+
+		public function deleteProductbytailor($id){
+			// prepare the statment
+			$statement = $this->conn->prepare("DELETE FROM product WHERE product_id=?");
+
+			// bind parameters
+			$statement->bind_param("i",$id);
+
+			//execute
+
+			$statement->execute();
+
+			// check if record was deleted
+			if($statement->affected_rows == 1){
+				//redirect to listclubs
+				$msg ="product was successfully deleted!";
+				header("Location:tailordashboard.php?m=$msg");
+				exit;
+			}else{
+				//redirect to List Products
+
+				$msg = "Oops! Could not delete product record.";
+				header("Location:tailordashboard.php?err=$msg");
+				exit;
+			}
+		}
+
+		#End Delete Products by tailor
+
+
+		#start Edit products by tailor
+
+
+		public function editproductbytailor($productname, $productdesc, $productprice,$categoryid,$productid){
+			// prepare the statement
+
+		$statement = $this->conn->prepare("UPDATE product SET product_name=?, product_desc=?, product_price=?, category_id=? WHERE product_id=?");
+
+			//bind parameters
+
+			$statement->bind_param("ssiii", $productname, $productdesc, $productprice, $categoryid, $productid);
+
+			//execute
+
+			$statement->execute();
+
+			//check if update was successfully done
+
+			 return $statement->affected_rows;
+
+		}
+
+		#End Edit Products
+
 
 
 		# start get products by categories

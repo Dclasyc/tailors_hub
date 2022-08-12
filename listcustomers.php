@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-md-8 mb-3">
 
-      <a href="addcustomers.php" class="btn mybuttons mb-3" id="addcustomers">Add New Customers</a>
+      <!-- <a href="addcustomers.php" class="btn mybuttons mb-3" id="addcustomers">Add New Customers</a> -->
 
       <?php
         if(isset($_REQUEST['m'])){
@@ -92,16 +92,16 @@
           ?>
           <tr>
             <td><?php echo $value['customer_id']?></td>
-            <td><?php echo $value['customer_username']?></td>
-            <td><?php echo $value['customer_firstname']?></td>
-            <td><?php echo $value['customer_lastname']?></td>
+            <td style="word-wrap: break-word;max-width: 90px;"><?php echo $value['customer_username']?></td>
+            <td style="word-wrap: break-word;max-width: 90px;"><?php echo $value['customer_firstname']?></td>
+            <td style="word-wrap: break-word;max-width: 90px;"><?php echo $value['customer_lastname']?></td>
             <td><?php echo $value['customer_gender']?></td>
             <td><?php echo $value['customer_dob']?></td>
-            <td><?php echo $value['customer_email']?></td>
-            <td><?php echo $value['customer_phone']?></td>
+            <td style="word-wrap: break-word;max-width: 155px;"><?php echo $value['customer_email']?></td>
+            <td style="word-wrap: break-word;max-width: 115px;"><?php echo $value['customer_phone']?></td>
             <td>
-              <a href="editcustomers.php?customerid=<?php echo $customerid ?>">Edit Customer_info</a> | 
-              <a href="deletecustomer.php?customerid=<?php echo $customerid ?>&customerusername=<?php echo $value['customer_username'];?>">Delete Customer_info</a>
+              <a href="editcustomers.php?customerid=<?php echo $customerid ?>"class="btn btn-success mb-1">Edit Customer_info</a> 
+              <a href="deletecustomer.php?customerid=<?php echo $customerid ?>&customerusername=<?php echo $value['customer_username'];?>"class="btn btn-danger mb-1">Delete Customer_info</a>
             </td>
 
           </tr>

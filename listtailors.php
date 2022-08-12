@@ -1,6 +1,6 @@
  <?php ?>
   <!-- Page Content -->
-  <div class="container">
+  <div class="">
 
     <!-- Page Heading/Breadcrumbs -->
     <h3 class="mt-4 mb-3">
@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-md-8 mb-3">
 
-      <a href="addtailors.php" class="btn mybuttons mb-3">Add New Tailors</a>
+      <!-- <a href="addtailors.php" class="btn mybuttons mb-3">Add New Tailors</a> -->
 
       <?php
         if(isset($_REQUEST['m'])){
@@ -49,7 +49,7 @@
       }
       ?>
  
-      <table class="table table-bordered table-striped table-hover">
+      <table class="table table-bordered table-striped table-hover" >
         <thead>
           <tr>
             <th>Tailor Id</th>
@@ -93,16 +93,16 @@
           ?>
           <tr>
             <td><?php echo $value['tailor_id']?></td>
-            <td><?php echo $value['tailor_username']?></td>
-            <td><?php echo $value['tailor_firstname']?></td>
-            <td><?php echo $value['tailor_lastname']?></td>
+            <td style="word-wrap: break-word;max-width: 90px;"><?php echo $value['tailor_username']?></td>
+            <td style="word-wrap: break-word;max-width: 90px;"><?php echo $value['tailor_firstname']?></td>
+            <td style="word-wrap: break-word;max-width: 90px;"><?php echo $value['tailor_lastname']?></td>
             <td><?php echo $value['tailor_gender']?></td>
             <td><?php echo $value['tailor_dob']?></td>
-            <td><?php echo $value['tailor_email']?></td>
+            <td style="word-wrap: break-word;max-width: 155px;"><?php echo $value['tailor_email']?></td>
             <td><?php echo $value['tailor_phone']?></td>
             <td>
               <a href="edittailors.php?tailorid=<?php echo $tailorid ?>" class="btn btn-success mb-1 disabled">Edit Tailor_info</a>  
-              <a href="deletetailor.php?tailorid=<?php echo $tailorid ?>&tailorusername=<?php echo $value['tailor_username'];?>" class="btn btn-danger form-control">Delete Tailor_info</a>
+              <a href="deletetailor.php?tailorid=<?php echo $tailorid ?>&tailorusername=<?php echo $value['tailor_username'];?>" class="btn btn-danger">Delete Tailor_info</a>
             </td>
 
           </tr>

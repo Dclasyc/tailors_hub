@@ -11,9 +11,9 @@ $catobj = new Products();
 $data = $catobj->getCategoryForEdit($_REQUEST['categoryid']);
 
 
-      echo "<pre>";
-      print_r($data);
-      echo "</pre>";
+      // echo "<pre>";
+      // print_r($data);
+      // echo "</pre>";
 
  if(isset($_POST['btneditcategories'])){
 
@@ -66,7 +66,7 @@ $data = $catobj->getCategoryForEdit($_REQUEST['categoryid']);
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6 mt-3 offset-3">
+    <div class="col-md-6-offset-3 mt-3">
 
         <h2 style="text-align:center">Edit Category Info</h2>
 

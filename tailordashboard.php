@@ -6,7 +6,7 @@
 
  <!-- Page Content -->
   
-  <div class="container-fluid">
+  <div class="row" style="width:98%">
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3 ml-2" style="text-align: center;">
@@ -14,7 +14,7 @@
       <?php 
 
         if(isset($_SESSION['tusername'])){
-          echo $_SESSION['tfname'];
+          echo $_SESSION['tusername'];
         }
       ?>
       <small>Dashboard</small>
@@ -27,37 +27,27 @@
          <div class="row mb-3" style="padding-left: 30px;">
 
           <!-- dashboard side panel -->
-           <div class="col-md-2 pl-3" style="min-height: 400px; background-color:#fff; box-shadow: 0px 0px 3px 1px;">
+           <div class="col-md-2 pl-3" style="height: 450px; background-color:#fff; box-shadow: 0px 0px 3px 1px;" id="dashboardsidepanel">
                  <div style="width: 100%; height: 200px; box-shadow: 0px 0px 3px 1px; display: flex; justify-content: center; align-items: center;" class="mb-3 mt-3">
-                   <h3 style="text-align:center">
-                     <?php 
-
-                          if(isset($_SESSION['t_id'])){
-                          echo $_SESSION['tfname'].' '.$_SESSION['tlname'];
-
-                         }
-                     ?>
-                   </h3>
+                   <i class="fa fa-user" style="font-size:130px;color:#ff8f1f;"></i>
                  </div>
 
                   <div class="mb-3">
-                   <input type="button" class="btn mybuttons form-control" name="listmyproducts" id="listmyproducts" value="See Products">
+                   <input type="button" class="btn mybuttons form-control" name="listmyproducts" id="listmyproducts" value="View My Products">
                  </div>
 
                  <div class="mb-3">
-                   <input type="button" class="btn mybuttons form-control" name="addproduct" id="addproduct" value="Add Product">
+                   <a href="logout.php"><input type="button" class="btn mybuttons form-control" name="addproduct" id="addproduct" value="Log out"></a>
                  </div>
 
-                 <div class="mb-3">
-                   <input type="button" class="btn mybuttons form-control" name="addcategory" id="addcategory" value="Add Category">
-                 </div>
+                 
+            </div>
 
                  
             </form>
 
 
-         </div>
-
+         
            <!-- dashboard main panel -->
            <div class="col-md-9 p-5" id="dasboardscreen" style="min-height: 10px; background-color:#fff; box-shadow: 0px 0px 3px 1px; margin-left: 30px;">
 
@@ -76,8 +66,11 @@
 
               <?php
             if(isset($_REQUEST['info'])){
-
-              echo $_REQUEST['info'];
+            ?>
+              <div class="alert alert-success">
+              <?php echo $_REQUEST['info']; ?>              
+              </div>
+            <?php  
             }
             ?>
 
@@ -87,7 +80,7 @@
               <!-- overview cards -->
            <div class="row">
 
-                <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="col-md-3 col-sm-6 mb-3">
             <div class="card text-white bg-success o-hidden h-100">
               <div class="card-body">
                 <div>
@@ -144,40 +137,6 @@
         })
       })
 
-      //list customers
-
-      $("#addproduct").click(function(){
-
-        $.ajax({
-          url:"addproduct.php",
-          type:"POST",
-          success:function(data){
-          $('#dasboardscreen').html(data);
-        },
-        })
-      })
-
-      $("#addcategory").click(function(){
-
-        $.ajax({
-          url:"addcategories.php",
-          type:"POST",
-          success:function(data){
-          $('#dasboardscreen').html(data);
-        },
-        })
-      })
-
-      $("#listcategories").click(function(){
-
-        $.ajax({
-          url:"listcategories.php",
-          type:"POST",
-          success:function(data){
-          $('#dasboardscreen').html(data);
-        },
-        })
-      })
 
     });
 
